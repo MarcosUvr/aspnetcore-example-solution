@@ -35,11 +35,30 @@
                     type: 'POST',
                     headers: { 'RequestVerificationToken': $('@Html.AntiForgeryToken()').val() }
                 },
-                columns:[
-                    { data: 'Name'},
+                columns: [
+                    { data: 'Id' },
+                    { data: 'Name' },
                     { data: 'Value' },
-                    { data: 'Created' },
-                    { data: 'Modified'}
+                    {
+                        data: 'Created',
+                        render: function (data, type, row) {
+                            if (data) {
+                                var date = new Date(data);
+                                return date.toLocaleDateString('es-ES');
+                            }
+                            return '';
+                        }
+                    },
+                    {
+                        data: 'Modified',
+                        render: function (data, type, row) {
+                            if (data) {
+                                var date = new Date(data);
+                                return date.toLocaleDateString('es-ES');
+                            }
+                            return '';
+                        }
+                    }
                 ]
             });
         })
