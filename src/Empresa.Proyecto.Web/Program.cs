@@ -37,6 +37,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Ejecutar el Seed al iniciar la aplicación
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<MyProjectContext>();
+    context.Database.Migrate();
+    context.Seed();
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

@@ -22,5 +22,24 @@ namespace Empresa.Proyecto.Infra.Data
         {           
             builder.ApplyConfigurationsFromAssembly(System.Reflection.Assembly.GetExecutingAssembly());
         }
+
+        /// <summary>
+        /// Método para inicializar el Seed en la base de datos
+        /// </summary>
+        public void Seed()
+        {
+            if (!SimpleEntity.Any())
+            {
+                SimpleEntity.AddRange(new[]
+                {
+                    new SimpleEntity { Name = "Nuevo", Value = "1", Created = DateTime.UtcNow, Modified = DateTime.UtcNow },
+                    new SimpleEntity { Name = "Existente", Value = "2", Created = DateTime.UtcNow, Modified = DateTime.UtcNow },
+                    new SimpleEntity { Name = "Reconstruido", Value = "3", Created = DateTime.UtcNow, Modified = DateTime.UtcNow }
+                    });
+
+                SaveChanges();
+            }
+        }
+
     }
 }
