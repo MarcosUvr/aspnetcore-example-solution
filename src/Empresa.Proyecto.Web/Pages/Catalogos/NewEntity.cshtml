@@ -1,0 +1,72 @@
+﻿@page
+@model Empresa.Proyecto.Web.Pages.Catalogos.NewEntityModel
+@{
+    ViewData["Title"] = "Nueva Entidad";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <table id="entities" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Opción</th>
+                <th>Creado</th>
+                <th>Modificado</th>
+            </tr>
+        </thead>
+    </table>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="Nombre">Nombre:</label>
+            <input type="text" id="Nombre" name="Nombre" class="form-control" maxlength="50" required />
+        </div>
+
+        <div class="form-group">
+            <label for="OptionId">Opción:</label>
+            <select id="OptionId" name="OptionId" class="form-control" required>
+                <option value="">Seleccione una opción</option>
+                @foreach (var option in Model.SimpleEntities)
+                {
+                    <option value="@option.Id">@option.Name</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#entities').DataTable({
+                "ajax": {
+                    url: "?handler=CatalogEntities",
+                    type: 'POST',
+                    headers: { 'RequestVerificationToken': $('@Html.AntiForgeryToken()').val() }
+                },
+                columns: [
+                    { data: 'Id' },
+                    { data: 'Name' },
+                    { data: 'Option.Name' },
+                    {
+                        data: 'Created',
+                        render: function (data) {
+                            return data ? new Date(data).toLocaleDateString('es-ES') : '';
+                        }
+                    },
+                    {
+                        data: 'Modified',
+                        render: function (data) {
+                            return data ? new Date(data).toLocaleDateString('es-ES') : '';
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+}

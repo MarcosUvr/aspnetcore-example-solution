@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Empresa.Proyecto.Web", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Empresa.Proyecto.Test.Infra", "tests\Empresa.Proyecto.Test.Infra\Empresa.Proyecto.Test.Infra.csproj", "{510B1AC2-EC90-4EAF-B66B-43C61E10D609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empresa.Proyecto.Helpers", "Empresa.Proyecto.Helpers\Empresa.Proyecto.Helpers.csproj", "{47E16677-4C51-45B3-A045-B4ED0FE018C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Empresa.Proyecto.Helpers", "Empresa.Proyecto.Helpers\Empresa.Proyecto.Helpers.csproj", "{47E16677-4C51-45B3-A045-B4ED0FE018C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

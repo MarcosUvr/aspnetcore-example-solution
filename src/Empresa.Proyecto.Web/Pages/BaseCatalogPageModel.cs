@@ -7,7 +7,7 @@ namespace Empresa.Proyecto.Web.Pages
 {
     public class BaseCatalogPageModel<T>: PageModel where T : BaseEntity
     {
-        private readonly IAsyncRepository<T> Repo;
+        private protected IAsyncRepository<T> Repo;
         private readonly ILogger<BaseCatalogPageModel<T>> Logger;
 
         public IReadOnlyList<T> Entidades { get; set; } = null!;
