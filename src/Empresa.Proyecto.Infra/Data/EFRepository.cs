@@ -42,7 +42,9 @@ namespace Empresa.Proyecto.Infra.Data
         /// <returns>Coleccion de entidades</returns>
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            return await _dbContext.Set<T>()
+                .OrderBy(e => EF.Property<string>(e, "Name"))
+                .ToListAsync();
         }
 
         /// <summary>

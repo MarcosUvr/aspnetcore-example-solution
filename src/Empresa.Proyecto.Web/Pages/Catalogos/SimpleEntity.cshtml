@@ -35,6 +35,7 @@
                     type: 'POST',
                     headers: { 'RequestVerificationToken': $('@Html.AntiForgeryToken()').val() }
                 },
+                "ordering": false,
                 columns: [
                     { data: 'Id' },
                     { data: 'Name' },
