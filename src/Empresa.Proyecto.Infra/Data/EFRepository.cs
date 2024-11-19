@@ -107,5 +107,20 @@ namespace Empresa.Proyecto.Infra.Data
             return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
         }
 
+        public async Task<(IReadOnlyList<T>, int)> GetPagedAsync(int skip, int take)
+        {
+            IQueryable<T> query = _dbContext.Set<T>();
+            int totalRecords = await query.CountAsync();
+
+            var items = await query
+                .OrderBy(e => EF.Property<object>(e, "Name"))
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+
+            return (items, totalRecords);
+        }
+
+
     }
 }

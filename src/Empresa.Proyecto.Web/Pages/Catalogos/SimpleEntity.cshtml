@@ -5,9 +5,6 @@
     var culture = System.Globalization.CultureInfo.CurrentCulture.ToString();
 }
 
-@using Empresa.Proyecto.Core.Entities;
-
-
 <h1>@ViewData["Title"]</h1>
 
 <div>
@@ -30,13 +27,16 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#entities').DataTable({
+                "serverSide": true,
+                "processing": true,
                 "ajax": {
-                    url: "?handler=Catalog",
+                    url: "?handler=CatalogFiltered",
                     type: 'POST',
                     headers: { 'RequestVerificationToken': $('@Html.AntiForgeryToken()').val() }
                 },
                 "ordering": false,
-                columns: [
+                "pageLength": 10,
+                "columns": [
                     { data: 'Id' },
                     { data: 'Name' },
                     { data: 'Value' },
@@ -60,7 +60,8 @@
                             return '';
                         }
                     }
-                ]
+                ],
+                "order": [[1, "asc"]]
             });
         })
     </script>

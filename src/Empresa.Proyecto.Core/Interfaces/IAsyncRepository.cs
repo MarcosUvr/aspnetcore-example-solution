@@ -56,5 +56,13 @@ namespace Empresa.Proyecto.Core.Interfaces
         /// <param name="entity">Entidad</param>
         /// <returns></returns>
         Task DeleteAsync(T entity);
+
+        /// <summary>
+        /// Obtiene una lista paginada de elementos y el total de registros
+        /// </summary>
+        /// <param name="skip">Cantidad de registros a omitir (para paginación)</param>
+        /// <param name="take">Cantidad de registros a tomar (para paginación)</param>
+        /// <returns>Una tupla con los elementos paginados y el total de registros</returns>
+        Task<(IReadOnlyList<T>, int)> GetPagedAsync(int skip, int take);
     }
 }
